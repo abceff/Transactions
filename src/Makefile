@@ -25,3 +25,6 @@ test_compile:
 
 test_run:
 	./$(TESTS_BINARY)
+
+clean:
+	rm -rf *.out*
