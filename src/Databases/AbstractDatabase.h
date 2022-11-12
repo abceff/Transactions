@@ -17,7 +17,6 @@ struct Values {
         city_ = other_values.city_;
         number_of_coins_ = other_values.number_of_coins_;
         ex_ = other_values.ex_;
-        std::cout << "OK!" << std::endl;
     }
     std::string key_, last_name_, first_name_, city_;
     int year_of_birth_ = -1, number_of_coins_ = -1, ex_ = -1;
