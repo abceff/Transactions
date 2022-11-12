@@ -33,7 +33,7 @@ private:
     void PrintKeys(std::vector<std::string> keys);
     void PrintOkOrFail(bool ok);
     void PrintIntOrNull(int value);
-    void PrintShowAll(std::vector<Values> vector_of_values);
+    void PrintShowAll(std::vector<Values*> vector_of_values);
     void PrintUploadAndExportOutput(int value);
 
     static bool IsNumber(const std::string& s);

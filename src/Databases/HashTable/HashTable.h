@@ -28,7 +28,7 @@ public:
     bool Rename(std::string old_key, std::string new_key) override;  // возвращает false, если ключа нет
     int TTL(std::string key) override;
     std::vector<std::string> Find(Values values) override;
-    std::vector<Values> ShowAll() override;
+    std::vector<Values*> ShowAll() override;
     int Upload(std::fstream& fs) override;  // возвращает кол-во считанных строк
     int Export(std::fstream& fs) override;  // возвращает кол-во выгруженных строк
 

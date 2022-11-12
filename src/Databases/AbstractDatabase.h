@@ -6,9 +6,10 @@
 
 struct Values {
     Values() = default;
-    Values(Values& other_values) { Copy(other_values); }
-    Values(Values&& other_values) { Copy(other_values); }
-    void Copy(Values& other_values) {
+    ~Values() = default;
+    Values(const Values& other_values) { Copy(other_values); }
+    Values(const Values&& other_values) { Copy(other_values); }
+    void Copy(const Values& other_values) {
         key_ = other_values.key_;
         last_name_ = other_values.last_name_;
         first_name_ = other_values.first_name_;
@@ -16,6 +17,7 @@ struct Values {
         city_ = other_values.city_;
         number_of_coins_ = other_values.number_of_coins_;
         ex_ = other_values.ex_;
+        std::cout << "OK!" << std::endl;
     }
     std::string key_, last_name_, first_name_, city_;
     int year_of_birth_ = -1, number_of_coins_ = -1, ex_ = -1;
@@ -34,7 +36,7 @@ public:
     virtual bool Rename(std::string key_old, std::string key) = 0;  // возвращает false, если ключа нет
     virtual int TTL(std::string key) = 0;
     virtual std::vector<std::string> Find(Values values) = 0;
-    virtual std::vector<Values> ShowAll() = 0;
+    virtual std::vector<Values*> ShowAll() = 0;
     virtual int Upload(std::fstream& fs) = 0;  // возвращает кол-во считанных строк
     virtual int Export(std::fstream& fs) = 0;  // возвращает кол-во выгруженных строк
 };

@@ -229,12 +229,13 @@ void ConsoleEngine::PrintOkOrFail(bool ok) { std::cout << (ok ? "OK" : "FAIL") <
 void ConsoleEngine::PrintIntOrNull(int value) {
     std::cout << (value == -1 ? "(null)" : std::to_string(value)) << std::endl;
 }
-void ConsoleEngine::PrintShowAll(std::vector<Values> vector_of_values) {
+void ConsoleEngine::PrintShowAll(std::vector<Values*> vector_of_values) {
     std::cout << "№ | Last name | First name | Year of birth | City | Number of coins |" << std::endl;
     for (int i = 0; i < vector_of_values.size(); ++i) {
-        std::cout << i + 1 << " \"" << vector_of_values[i].last_name_ << "\" \""
-                  << vector_of_values[i].first_name_ << "\" " << vector_of_values[i].year_of_birth_ << " \""
-                  << vector_of_values[i].city_ << "\" " << vector_of_values[i].number_of_coins_ << std::endl;
+        std::cout << i + 1 << " \"" << vector_of_values[i]->last_name_ << "\" \""
+                  << vector_of_values[i]->first_name_ << "\" " << vector_of_values[i]->year_of_birth_ << " \""
+                  << vector_of_values[i]->city_ << "\" " << vector_of_values[i]->number_of_coins_
+                  << std::endl;
     }
 }
 void ConsoleEngine::PrintUploadAndExportOutput(int value) {

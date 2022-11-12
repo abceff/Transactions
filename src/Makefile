@@ -3,8 +3,10 @@ MAIN = ConsoleEngine/main.cpp
 TESTS = Tests/tests.cpp
 CONSOLE_ENGINE = ConsoleEngine/ConsoleEngine.cpp
 HASH_TABLE = Databases/HashTable/HashTable.cpp
+INVESTIGATION = InvestigationOfTimeCharacteristics/InvestigationOfTimeCharacteristics.cpp
 HASH_TABLE_BINARY = hash_table.out
 TESTS_BINARY = tests.out
+INVESTIGATION_BINARY = investigation.out
 
 all: hash_table_compile
 
@@ -25,6 +27,14 @@ test_compile:
 
 test_run:
 	./$(TESTS_BINARY)
+
+investigation: investigation_compile investigation_run
+
+investigation_compile:
+	$(FLAGS) $(INVESTIGATION) $(HASH_TABLE) $(CONSOLE_ENGINE) -o $(INVESTIGATION_BINARY)
+
+investigation_run:
+	./$(INVESTIGATION_BINARY)
 
 clean:
 	rm -rf *.out*

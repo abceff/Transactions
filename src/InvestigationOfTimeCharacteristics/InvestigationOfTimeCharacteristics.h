@@ -4,14 +4,21 @@
 #include <iostream>
 #include <vector>
 
+#include "../Databases/HashTable/HashTable.h"
+
+namespace s21 {
 class InvestigationOfTimeCharacteristics {
 public:
-    int RequestNumberOfRepetitions();
+    void RequestNumberOfRepetitions();
     void MeasureAverageWorkingTime();
+    void PrintResults();
 
 private:
     int number_of_repetitions_;
-    std::vector<double> times;
+    std::vector<double> average_times;
+
+    HashTable hash_table;
 };
+}  // namespace s21
 
 #endif  // TRANSACTIONS_INVESTIGATIONOFTIMECHARACTERISTICS_H

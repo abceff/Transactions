@@ -21,14 +21,12 @@ HashTable::~HashTable() {
 void HashTable::Set(Values values) {
     if (number_of_indices_filled_in_ >= (double)values_vector.size() * 0.75) {
         values_vector.resize(values_vector.size() + buffer_size_);
-        buffer_size_ *= 1.5;
         Rehash();
+        buffer_size_ *= 1.5;
     }
     int key_int = StringToKeyInt(values.key_);
     i_ = 0;
-    int counter = 0;
     while (true) {
-        ++counter;
         int index = HashFunction(key_int);
         if (!values_vector[index]) {
             deleted[index] = false;
@@ -39,7 +37,7 @@ void HashTable::Set(Values values) {
                 thread.detach();
             }
             break;
-        } else if (values_vector[index]->key_ == values.key_) {
+        } else if (values_vector[index]->key_.c_str() == values.key_.c_str()) {
             break;
         }
     }
@@ -177,10 +175,10 @@ std::vector<std::string> HashTable::Find(Values values) {
     return return_vector;
 }
 
-std::vector<Values> HashTable::ShowAll() {
-    std::vector<Values> return_values;
+std::vector<Values*> HashTable::ShowAll() {
+    std::vector<Values*> return_values;
     for (Values* values : values_vector) {
-        if (values) return_values.push_back(Values(*values));
+        if (values) return_values.push_back(values);
     }
     return return_values;
 }
@@ -257,7 +255,7 @@ void HashTable::Rehash() {
     std::vector<Values> values_for_rehashing;
     for (int i = 0; i < values_vector.size(); ++i) {
         if (values_vector[i]) {
-            values_for_rehashing.push_back(Values(*values_vector[i]));
+            values_for_rehashing.push_back(*values_vector[i]);
             delete values_vector[i];
             values_vector[i] = nullptr;
         }
