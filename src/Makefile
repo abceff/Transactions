@@ -36,5 +36,8 @@ investigation_compile:
 investigation_run:
 	./$(INVESTIGATION_BINARY)
 
+leaks_check:
+	CK_FORKS=no leaks -atExit -- ./$(TESTS_BINARY)
+
 clean:
-	rm -rf *.out*
+	rm -rf *.out* .clang-format
