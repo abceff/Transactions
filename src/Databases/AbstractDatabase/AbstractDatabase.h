@@ -15,7 +15,7 @@ namespace s21 {
 class AbstractDatabase {
 public:
     virtual ~AbstractDatabase() = default;
-    virtual void Set(Values values) = 0;
+    virtual bool Set(Values values) = 0;
     virtual Values Get(std::string key) = 0;
     virtual bool Exists(std::string key) = 0;
     virtual bool Del(std::string key) = 0;   // возвращает false, если ключа нет

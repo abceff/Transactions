@@ -10,7 +10,7 @@ namespace s21 {
 class SelfBalancingBinarySearchTree : public AbstractDatabase {
 public:
     ~SelfBalancingBinarySearchTree() override;
-    void Set(Values values) override;
+    bool Set(Values values) override;
     Values Get(std::string key) override;
     bool Exists(std::string key) override;
     bool Del(std::string key) override;   // возвращает false, если ключа нет

@@ -24,7 +24,7 @@ void SelfBalancingBinarySearchTree::ClearNode(Node *node) {
     }
 }
 
-void SelfBalancingBinarySearchTree::Set(Values values) {
+bool SelfBalancingBinarySearchTree::Set(Values values) {
     if (!Exists(values.key_)) {
         if (!root_) {
             root_ = new Node(values);
@@ -35,7 +35,9 @@ void SelfBalancingBinarySearchTree::Set(Values values) {
             std::thread thread(DeleteByTimer, this, values.key_, std::ref(GetNodeEx(values.key_)));
             thread.detach();
         }
+        return true;
     }
+    return false;
 }
 
 Values SelfBalancingBinarySearchTree::Get(std::string key) {

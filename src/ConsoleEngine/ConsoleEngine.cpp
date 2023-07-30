@@ -19,7 +19,7 @@ void ConsoleEngine::Start() {
         if (function == "SET") {
             Values values;
             if (ValidateValues(operands, values)) {
-                abstract_database->Set(values);
+                PrintOkOrFail(abstract_database->Set(values));
             }
         } else if (function == "GET") {
             std::string key;

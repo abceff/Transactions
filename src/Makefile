@@ -3,6 +3,7 @@ MAIN = ConsoleEngine/main.cpp
 TESTS = Tests/GoogleTests.cpp
 CONSOLE_ENGINE = ConsoleEngine/ConsoleEngine.cpp
 UTILS = Utils/Utils.cpp
+VALUES = Databases/Values/Values.cpp
 ABSTRACT_DATABASE = Databases/AbstractDatabase/AbstractDatabase.cpp
 HASH_TABLE = Databases/HashTable/HashTable.cpp
 SELF_BALANCING_BINARY_SEARCH_TREE = Databases/SelfBalancingBinarySearchTree/SelfBalancingBinarySearchTree.cpp
@@ -20,19 +21,19 @@ endif
 all: test
 
 hash_table.a:
-	g++ -c $(UTILS) $(ABSTRACT_DATABASE) $(HASH_TABLE)
+	g++ -c $(UTILS) $(ABSTRACT_DATABASE) $(HASH_TABLE) $(VALUES)
 	ar rcs hash_table.a Utils.o AbstractDatabase.o HashTable.o
 	rm -rf Utils.o AbstractDatabase.o HashTable.o
 
 self_balancing_binary_search_tree.a:
-	g++ -c $(UTILS) $(ABSTRACT_DATABASE) $(SELF_BALANCING_BINARY_SEARCH_TREE)
+	g++ -c $(UTILS) $(ABSTRACT_DATABASE) $(SELF_BALANCING_BINARY_SEARCH_TREE) $(VALUES)
 	ar rcs self_balancing_binary_search_tree.a Utils.o AbstractDatabase.o SelfBalancingBinarySearchTree.o
 	rm -rf Utils.o AbstractDatabase.o SelfBalancingBinarySearchTree.o
 
 console_interface: console_interface_compile console_interface_run
 
 console_interface_compile:
-	$(FLAGS) $(MAIN) $(UTILS) $(CONSOLE_ENGINE) $(ABSTRACT_DATABASE) $(HASH_TABLE) $(SELF_BALANCING_BINARY_SEARCH_TREE) -o $(CONSOLE_INTERFACE_BINARY)
+	$(FLAGS) $(MAIN) $(UTILS) $(VALUES) $(CONSOLE_ENGINE) $(ABSTRACT_DATABASE) $(HASH_TABLE) $(SELF_BALANCING_BINARY_SEARCH_TREE) -o $(CONSOLE_INTERFACE_BINARY)
 
 console_interface_run:
 	./$(CONSOLE_INTERFACE_BINARY)
@@ -40,7 +41,7 @@ console_interface_run:
 test: test_compile test_run
 
 test_compile:
-	$(FLAGS) $(GTEST) $(TESTS) $(UTILS) $(ABSTRACT_DATABASE) $(HASH_TABLE) $(SELF_BALANCING_BINARY_SEARCH_TREE) $(CONSOLE_ENGINE) -o $(TESTS_BINARY)
+	$(FLAGS) $(GTEST) $(TESTS) $(UTILS) $(VALUES) $(ABSTRACT_DATABASE) $(HASH_TABLE) $(SELF_BALANCING_BINARY_SEARCH_TREE) $(CONSOLE_ENGINE) -o $(TESTS_BINARY)
 
 test_run:
 	./$(TESTS_BINARY)
@@ -48,7 +49,7 @@ test_run:
 investigation: investigation_compile investigation_run
 
 investigation_compile:
-	$(FLAGS) $(INVESTIGATION) $(UTILS) $(ABSTRACT_DATABASE) $(HASH_TABLE) $(SELF_BALANCING_BINARY_SEARCH_TREE) $(CONSOLE_ENGINE) -o $(INVESTIGATION_BINARY)
+	$(FLAGS) $(INVESTIGATION) $(UTILS) $(VALUES) $(ABSTRACT_DATABASE) $(HASH_TABLE) $(SELF_BALANCING_BINARY_SEARCH_TREE) $(CONSOLE_ENGINE) -o $(INVESTIGATION_BINARY)
 
 investigation_run:
 	./$(INVESTIGATION_BINARY)

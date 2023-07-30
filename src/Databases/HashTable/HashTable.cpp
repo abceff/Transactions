@@ -22,7 +22,7 @@ HashTable::~HashTable() {
     delete deleted;
 }
 
-void HashTable::Set(Values values) {
+bool HashTable::Set(Values values) {
     if (!Exists(values.key_)) {
         if (number_of_indices_filled_in_ >= (double)values_vector->size() * 0.75) {
             Rehash();
@@ -45,7 +45,9 @@ void HashTable::Set(Values values) {
                 break;
             }
         }
+        return true;
     }
+    return false;
 }
 
 Values HashTable::Get(std::string key) {
